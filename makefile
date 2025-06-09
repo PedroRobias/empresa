@@ -3,25 +3,29 @@ TARGET = empresa
 
 # Compilador
 CXX = g++
-CXXFLAGS = -Wall -std=c++11
+CXXFLAGS = -Wall -std=c++11 -I.  # Inclui diretório atual (para achar os .h)
 
 # Fontes do projeto
-SRCS = main.cpp \
-       funcionario.cpp \
-       desenvolvedor.cpp \
-       gerente.cpp \
-       estagiario.cpp
+SRCS = main.cpp\
+       implementacao_m/funcionario.cpp \
+       implementacao_m/desenvolvedor.cpp \
+       implementacao_m/gerente.cpp \
+       implementacao_m/estagiario.cpp
 
-# Arquivos objeto (convertendo .cpp em .o)
+# Gera os arquivos .o correspondentes
 OBJS = $(SRCS:.cpp=.o)
 
-# Regra padrão: construir tudo
+# Regra principal
 all: $(TARGET)
 
-# Como compilar o executável
+# Como gerar o executável
 $(TARGET): $(OBJS)
-	$(CXX) $(OBJS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
-# Regra para limpar arquivos gerados (.o e o executável)
+# Regra genérica para criar .o a partir de .cpp
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Limpar tudo
 clean:
 	rm -f $(OBJS) $(TARGET)
