@@ -18,14 +18,14 @@ int main() {
     cout << endl;
     
     //Verificar quantidade a ser cadastrada
-    /*if (quantos < 6 || quantos > 10){
+    if (quantos < 6 || quantos > 10){
         while (quantos < 6 || quantos > 10){
         cout << "Quantidade invalida, tente de novo.\n";
         cout << "Quantos funcionarios deseja cadastrar? (min 6, max 10):";
         cin >> quantos;
         cout << endl;
         }
-    }*/
+    }
 
     //Loop para cadastro
     while (count < quantos) {
@@ -119,6 +119,7 @@ int main() {
     cout << "\n---- Funcionarios cadastrados ----\n";
     for (int i = 0; i < count; i++) {
         funcionarios[i]->exibirInformacoes();
+        printf("\n");
         delete funcionarios[i];  // liberar memória logo após mostrar
     }
 
